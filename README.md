@@ -2,9 +2,13 @@
 
 Post pictures into Twitter easily.
 
+## Installing
+
+`npm install twitter-pic`
+
 ## Usage
 
-```js
+```
 var TwitterPic = require('twitter-pic'),
     request    = require('request')
 ;
@@ -12,19 +16,19 @@ var TwitterPic = require('twitter-pic'),
 var t = new TwitterPic({
     consumer_key:    'w',
     consumer_secret: 'x',
-    token:       'y',
-  token_secret:    'z'
+    token:           'y',
+    token_secret:    'z'
 });
 
 t.update(
     'This can be a status',
     request('https://avatars3.githubusercontent.com/u/1159695?s=460'),
-    function (err) {
+    function (err, result) {
         if (err) {
-            console.error('Nope!');
-        } else {
-            console.log('Yey!');
+            return console.error('Nope!', err);
         }
-    };
+        
+        console.log(result);
+    }
 );
 ```

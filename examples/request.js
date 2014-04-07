@@ -5,20 +5,22 @@ var TwitterPic = require('../index'),
 ;
 
 var t = new TwitterPic({
-    consumer_key:    'w',
-    consumer_secret: 'x',
-    token:           'y',
-    token_secret:    'z'
+    'consumer_key':    'w',
+    'consumer_secret': 'x',
+    'token':           'y',
+    'token_secret':    'z'
 });
 
 t.update(
-    'This can be a status',
+    'w00t?',
     request('https://avatars3.githubusercontent.com/u/1159695?s=460'),
-    function (err) {
+    function (err, result) {
         if (err) {
-            console.error('Nope!');
-        } else {
-            console.log('Yey!');
+            return console.error('Nope!', err);
         }
+
+        console.log(result);
     }
 );
+
+
