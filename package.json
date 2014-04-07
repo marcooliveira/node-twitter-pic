@@ -1,0 +1,34 @@
+{
+  "name": "twitter-pic",
+  "version": "0.0.1",
+  "description": "Post pictures on twitter easily",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcooliveira/node-twitter-pic"
+  },
+  "keywords": [
+    "twitter",
+    "pic",
+    "picture",
+    "media",
+    "image",
+    "img",
+    "tweet"
+  ],
+  "author": "Marco Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcooliveira/node-twitter-pic/issues"
+  },
+  "homepage": "https://github.com/marcooliveira/node-twitter-pic",
+  "dependencies": {
+    "request": "^2.34.0"
+  }
+}
