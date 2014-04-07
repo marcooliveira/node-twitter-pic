@@ -6,8 +6,8 @@ var TwitterPic = function (auth) {
     this._auth = auth;
 };
 
-TwitterPic.prototype.update = function (status, fileStream, callback) {
-    var form, req;
+TwitterPic.prototype.update = function (params, callback) {
+    var form, req, value, key;
 
     req = request.post('https://api.twitter.com/1.1/statuses/update_with_media.json', {
         oauth: this._auth
@@ -21,10 +21,30 @@ TwitterPic.prototype.update = function (status, fileStream, callback) {
         callback(null, parsedBody);
     });
 
+    // add parameters to the req
     form = req.form();
-    form.append('status', status);
 
-    form.append('media[]', fileStream);
+    // for each param that was specified
+    for (key in params) {
+        value = params[key];
+        // if it's the media, assert that field key is correct
+        if (key === 'media' || key === 'media[]') {
+            // can't add multiple pictures due to this issue:
+            // https://github.com/felixge/node-form-data/issues/38
+            //
+            // if (isArray(value)) {
+            //     value.forEach(function (fileStream) {
+            //         form.append('media[]', fileStream);
+            //     });
+            // } else {
+            //     form.append('media[]', value);
+            // }
+            form.append('media[]', value);
+        } else {
+            // not an array, just add the param
+            form.append(key, value);
+        }
+    }
 };
 
 module.exports = TwitterPic;
